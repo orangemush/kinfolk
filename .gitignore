@@ -75,7 +75,7 @@ pytestdebug.log
 # Django stuff:
 
 # Flask stuff:
-instance/
+instance/git 버전 관리 무시 목록(ignore) 설정법(.gitignore)
 .webassets-cache
 
 # Scrapy stuff:
@@ -233,8 +233,9 @@ dmypy.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,linux,visualstudiocode,django
 
-crawling/*
+crawling.py
 db_save/*
 debug.log
 nohup.out
 test.py
+*.csv
