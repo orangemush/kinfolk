@@ -11,6 +11,7 @@ class Account(models.Model):
     user_name    = models.CharField(max_length = 32, null = True)
     display_name = models.CharField(max_length = 32, null = True)
     real_name    = models.CharField(max_length = 32, null = True)
+    kakao_id     = models.CharField(max_length = 64, null = True)
 
 class ShippingAddress(models.Model):
     recipient      = models.CharField(max_length = 64)
