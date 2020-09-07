@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'user',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -33,9 +32,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
-
 ROOT_URLCONF = 'kinfolk.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -51,7 +48,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'kinfolk.wsgi.application'
 
 DATABASES = DATABASES
@@ -72,20 +68,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL=True
 CORS_ALLOW_CREDENTIALS = True
-
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
@@ -94,7 +85,6 @@ CORS_ALLOW_METHODS = (
     'POST',
     'PUT',
 )
-
 CORS_ALLOW_HEADERS = (
     'accept',
     'accept-encoding',
