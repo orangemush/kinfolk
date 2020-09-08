@@ -26,7 +26,7 @@ class CategoryProduct(models.Model):
     title           = models.CharField(max_length = 32)
     description     = models.CharField(max_length = 1024)
     published_data  = models.CharField(max_length = 32)
-    category        = models.ForeignKey('Category', on_delete = models.CASCADE)
+    category        = models.ForeignKey('Category', on_delete = models.CASCADE, null = True)
 
     class Meta:
         db_table = 'category_products'
