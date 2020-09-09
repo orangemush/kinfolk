@@ -7,8 +7,8 @@ from product.models import (
 )
 
 class Basket(models.Model):
-    shop_product     = models.ForeignKey(ShopProduct, on_delete = models.CASCADE, null = True)
-    account          = models.ForeignKey(Account, on_delete = models.CASCADE, null = True)
+    product     = models.CharField(max_length = 512, null = True)
+    account     = models.ForeignKey(Account, on_delete = models.CASCADE, null = True)
 
 class Coupon(models.Model):
     coupon_code = models.CharField(max_length = 32)
