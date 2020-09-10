@@ -107,3 +107,68 @@ class AccountLogInTest(TestCase):
                 'message': 'KEY_ERROR'
             }
         )
+
+class KakaoLogInTest(TestCase):
+    def setUp(self):
+        Account.objects.create(
+            email    = 'feisyhe@naver.com',
+            kakao_id = "1471204013"
+        ).save()
+
+    def tearDown(self):
+        Account.objects.get(email = 'feisyhe@naver.com').delete()
+
+    @patch("user.views.requests")
+    def test_kakao_login_success(self, mocked_request):
+        class MockedResponse:
+            def json(self):
+                user_info = {
+                    "id": "1471204013",
+                    "kakao_account": {
+                        "email": 'feisyhe@naver.com'
+                    }
+                }
+                return user_info
+
+        mocked_request.get = MagicMock(return_value = MockedResponse())
+        client             = Client()
+        response           = client.get("/user/kakao_login", content_type = "applications/json")
+        
+        self.assertEqual(response.status_code, 200)
+    
+
+    @patch("user.views.requests")
+    def test_kakao_login_not_found(self, mocked_request):
+        class MockedResponse:
+            def json(self):
+                user_info = {
+                    "id": "1471204013",
+                    "kakao_account": {
+                        "email": 'feisyhe@naver.com'
+                    }
+                }
+                return user_info
+
+        mocked_request.get = MagicMock(return_value = MockedResponse())
+        client             = Client()
+        response           = client.get("/user/not_found", content_type = "applications/json")
+        
+        self.assertEqual(response.status_code, 404)
+
+    @patch("user.views.requests")
+    def test_kakao_login_key_error(self, mocked_request):
+        class MockedResponse:
+            def json(self):
+                user_info = {
+                    "id": None,
+                    "kakao_account": {
+                        "email": 'feisyhe@naver.com'
+                    }
+                }
+                return user_info
+
+        mocked_request.get = MagicMock(return_value = MockedResponse())
+        client             = Client()
+        response           = client.get("/user/kakao_login", content_type = "applications/json")
+        
+        self.assertEqual(response.status_code, 400)

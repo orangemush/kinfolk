@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             name='ShippingAddress',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('recipient', models.CharField(max_length=64)),
+                ('recipient', models.CharField(max_lenjsonparsegth=64)),
                 ('company_name', models.CharField(max_length=64, null=True)),
                 ('country_region', models.CharField(max_length=64)),
                 ('street_address', models.CharField(max_length=512)),
