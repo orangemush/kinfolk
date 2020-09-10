@@ -233,7 +233,7 @@ dmypy.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,linux,visualstudiocode,django
 
-crawling.py
+tempCodeRunnerFile.py
 db_save/*
 debug.log
 nohup.out

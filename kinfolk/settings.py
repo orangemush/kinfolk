@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'user',
+    'product',
+    'basket'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
