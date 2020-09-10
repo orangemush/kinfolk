@@ -18,12 +18,12 @@ class BasketView(View):
     def get(self, request):
         pass
 
-    
     def put(self, request):
         try:
             data        = json.loads(request.body)
             quantity    = data['quantity']
             product_id  = data['id']
+
             product     = ShopProduct.objects.get(id = product_id)
             
             Basket.objects.create(
@@ -31,6 +31,17 @@ class BasketView(View):
                 quantity     = quantity
             )
 
+            account_id  = data['account_id']
+
+            basket = Basket.objects.get(account = account_id)
+            if len(basket.objects.all()) == 0:
+                Basket.objects.create (
+                product = {product_id: quantity},
+                account = account_id
+            )
+
+            else:
+                basket.objects.product[product_id] = quantity
         except KeyError:
             return JsonResponse({"message": "KEY_ERROR"}, status = 400)
         except ValueError:
@@ -39,13 +50,11 @@ class BasketView(View):
 
     def delete(self, request):
         try:
-            data = json.loads(request.body)
+            data        = json.loads(request.body)
             product_id  = data['id']
-            product_tag = data['tag']
+            account_id  = data['account_id']
 
-            product = ShopProduct.objects.get(id = product_id, outer_tag = product_tag)
-            Basket.objects.get(shop_product = product).delete()
-
+            Basket.objects.get(account = account_id).delete()
         except KeyError:
             return JsonResponse({"message": "KEY_ERROR"}, status = 400)
         except ValueError:

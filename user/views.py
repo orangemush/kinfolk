@@ -1,14 +1,21 @@
 import json
 import bcrypt
 import jwt
+import requests
 
 from django.views           import View
-from django.http            import JsonResponse
+from django.http            import (
+    JsonResponse,
+    HttpResponse
+)
 from django.core.exceptions import ValidationError
 from django.db.models       import Q
 
 from .validator      import password_validate
-from local_settings import SECRET_KEY, ALGORITHM
+from local_settings import (
+    SECRET_KEY,
+    ALGORITHM
+)
 from user.models    import Account
 
 class SignUpView(View):
@@ -55,7 +62,7 @@ class SignUpView(View):
 class LogInView(View):
     def post(self, request):
         try:
-            data = json.loads(request.body)
+            data      = json.loads(request.body)
             email     = data['email']
             password  = data['password']
 
@@ -78,3 +85,37 @@ class LogInView(View):
 
         except json.decoder.JSONDecodeError:
             return JsonResponse({"message": "JSONDecodeError"}, status = 400)
+
+class KakaoSignInView(View):
+    def get(self, request):
+        try:
+            access_token    = request.headers.get('Authorization', None)
+            profile         = requests.get(
+                'https://kapi.kakao.com/v2/user/me', 
+                headers = {
+                    "Authorization": f"Bearer {access_token}"
+                }
+            )
+
+            profile    = profile.json()
+            email      = profile.get('kakao_account', None).get('email', None)
+            kakao_id   = profile.get('id', None)
+
+            if kakao_id == None:
+                return JsonResponse({'message' : 'INVALID_KEY'}, status = 400)
+
+            Account.objects.get_or_create(
+                email    = email,
+                kakao_id = kakao_id
+            )
+
+            user  = Account.objects.get(kakao_id = kakao_id)
+            token = jwt.encode(
+                {'user_email': user.email}, 
+                SECRET_KEY, 
+                algorithm = ALGORITHM
+            ).decode('utf-8')
+            return JsonResponse({'token' : token}, status = 200)
+
+        except KeyError:
+            return JsonResponse({'message': 'INVALID_KEY'}, status = 400)
