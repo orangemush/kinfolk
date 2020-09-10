@@ -11,3 +11,4 @@ urlpatterns = [
     path('login', LogInView.as_view()),
     path('kakao_login', KakaoSignInView.as_view())
 ]
+
