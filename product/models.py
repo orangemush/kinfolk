@@ -16,7 +16,7 @@ class ShopProduct(models.Model):
     inner_description       = models.TextField(max_length = 1024)
     inner_details           = models.TextField(max_length = 1024)
     inner_shipping_handling = models.TextField(max_length = 1024)
-  
+
     class Meta:
         db_table = 'shop_products'
 
