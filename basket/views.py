@@ -4,7 +4,7 @@ from django.views     import View
 from django.http      import JsonResponse
 
 from local_settings   import SECRET_KEY, ALGORITHM
-from .models          import Basket
+from basket.models    import Basket
 from product.models   import (
     ShopProduct,
     CategoryProduct

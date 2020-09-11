@@ -7,7 +7,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path('/sign_up', SignUpView.as_view()),
-    path('/login', LogInView.as_view()),
-    path('/kakao_login', KakaoSignInView.as_view())
+    path('sign_up', SignUpView.as_view()),
+    path('login', LogInView.as_view()),
+    path('kakao_login', KakaoSignInView.as_view())
 ]

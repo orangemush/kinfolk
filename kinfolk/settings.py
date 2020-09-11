@@ -7,11 +7,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 ALGORITHM = ALGORITHM
 
 SECRET_KEY = SECRET_KEY
-
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 INSTALLED_APPS = [
     # 'django.contrib.admin',
     # 'django.contrib.auth',
@@ -56,9 +54,6 @@ DATABASES = DATABASES
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
@@ -76,7 +71,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-
 CORS_ORIGIN_ALLOW_ALL=True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = (
