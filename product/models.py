@@ -16,7 +16,7 @@ class ShopProduct(models.Model):
     inner_description       = models.TextField(max_length = 1024)
     inner_details           = models.TextField(max_length = 1024)
     inner_shipping_handling = models.TextField(max_length = 1024)
-  
+    
     class Meta:
         db_table = 'shop_products'
 
@@ -26,7 +26,7 @@ class CategoryProduct(models.Model):
     title           = models.TextField(max_length = 32)
     description     = models.TextField(max_length = 1024)
     published_data  = models.TextField(max_length = 32)
-    category        = models.ForeignKey('Category', on_delete = models.CASCADE)
+    category        = models.ForeignKey('Category', on_delete = models.CASCADE, null = True)
 
     class Meta:
         db_table = 'category_products'
