@@ -239,3 +239,7 @@ debug.log
 nohup.out
 test.py
 *.csv
+kinfolk_csv.py
+python_test.py
+*.sql
+CSV_to_DB.py
