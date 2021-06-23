@@ -6,7 +6,7 @@
 ## 개발 인원 및 기간
 ### 개발 인원
 * 프론트엔드 3명: [김규영](https://github.com/aglet870), [이상훈](https://github.com/sanghunlee-711), [이효정](https://github.com/ovovv)
-* 백엔드 2명: [김태하](https://github.com/taeha7b), [문태기](https://github.com/0417taehyun)
+* 백엔드 2명: [김태하](https://github.com/taeha7b), [문태기](https://github.com/orangemush)
 
 ### 개발 기간
 * 2020/08/31 ~ 2020/09/11
